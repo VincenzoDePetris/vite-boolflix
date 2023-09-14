@@ -17,12 +17,19 @@ export default {
     fetchFilms(endpoint) {
       axios.get(endpoint).then((response) => {});
     },
+    researchCatalogue(research) {
+      console.log(research);
+    },
   },
 };
 </script>
 
 <template>
-  <appHeader />
+  <appHeader
+    @search="researchCatalogue"
+    placeholder="Film o serie TV"
+    buttonSubmitText="Cerca"
+  />
   <appMain />
 </template>
 
