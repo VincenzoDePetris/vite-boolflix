@@ -2,7 +2,6 @@
 import CardsList from "./cards/CardsList.vue";
 
 export default {
-  data() {},
   components: { CardsList },
 };
 </script>

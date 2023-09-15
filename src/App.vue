@@ -14,11 +14,33 @@ export default {
   components: { appHeader, appMain },
 
   methods: {
-    fetchFilms(endpoint) {
-      axios.get(endpoint).then((response) => {});
-    },
-    researchCatalogue(research) {
-      console.log(research);
+    fetchFilms(research) {
+      axios
+        .get("https://api.themoviedb.org/3/search/movie", {
+          params: {
+            query: research,
+            api_key: "e8f7059410b9f51c614d2ed5b727c27f",
+          },
+        })
+        .then((response) => {
+          store.movies = response.data.results.map((movie) => {
+            const {
+              id,
+              title,
+              original_title,
+              original_lenguage,
+              vote_average,
+            } = movie;
+
+            return {
+              id,
+              title,
+              lenguage: original_lenguage,
+              vote: Math.ceil(vote_average / 2),
+              original_title,
+            };
+          });
+        });
     },
   },
 };
@@ -26,10 +48,18 @@ export default {
 
 <template>
   <appHeader
-    @search="researchCatalogue"
+    @search="fetchFilms"
     placeholder="Film o serie TV"
     buttonSubmitText="Cerca"
   />
+  <ul>
+    <li v-for="movie in store.movies" :key="movie.id">
+      {{ movie.title }}
+      {{ movie.original_title }}
+      {{ movie.lenguage }}
+      {{ movie.vote }}
+    </li>
+  </ul>
   <appMain />
 </template>
 

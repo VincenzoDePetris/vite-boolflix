@@ -2,9 +2,6 @@
 import CardDetail from "./CardDetail.vue";
 
 export default {
-  data() {
-    return {};
-  },
   components: { CardDetail },
 };
 </script>
