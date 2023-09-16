@@ -25,9 +25,13 @@ export default {
               original_title,
               original_lenguage,
               vote_average,
+              poster_path,
+              overview,
             } = movie;
 
             return {
+              overview,
+              poster: "https://image.tmdb.org/t/p/w300" + poster_path,
               id,
               title,
               original_lenguage,
@@ -45,10 +49,19 @@ export default {
         })
         .then((response) => {
           store.series = response.data.results.map((series) => {
-            const { id, original_name, original_language, name, vote_average } =
-              series;
+            const {
+              id,
+              original_name,
+              original_language,
+              name,
+              vote_average,
+              overview,
+              poster_path,
+            } = series;
 
             return {
+              poster: "https://image.tmdb.org/t/p/w300" + poster_path,
+              overview,
               id,
               original_name,
               original_language,
@@ -72,4 +85,6 @@ export default {
   <appMain />
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@use "./components/main.scss" as *;
+</style>

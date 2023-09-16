@@ -17,7 +17,7 @@ export default {
 <template>
   <nav class="navbar bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand">Navbar</a>
+      <a class="navbar-brand text-danger">BOOLFLIX</a>
       <form
         class="d-flex"
         role="search"
@@ -30,7 +30,7 @@ export default {
           :placeholder="placeholder"
           aria-label="Search"
         />
-        <button class="btn btn-outline-success" type="submit">
+        <button class="btn btn-outline-danger" type="submit">
           {{ buttonSubmitText }}
         </button>
       </form>
