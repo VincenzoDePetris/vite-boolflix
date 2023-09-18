@@ -10,6 +10,11 @@ export default {
     };
   },
   components: { CardDetail },
+  methods: {
+    star(n) {
+      return n <= store.movies.vote ? "fa-regular fa-star" : "fa-solid fa-star";
+    },
+  },
 };
 </script>
 
@@ -26,7 +31,7 @@ export default {
           alt=""
         />
         <img class="flag" v-else :src="'/flags/noflag.png'" alt="" />
-        <p>Voto: {{ movie.vote }}</p>
+        <p>Voto: <font-awesome-icon :icon="star(n)" v-for="n in 5" /></p>
         <p>Overview: {{ movie.overview }}</p>
       </div>
       <div>
@@ -58,13 +63,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.info {
-  display: none;
-}
-
 img {
   max-height: 100%;
 }
+
 .dad {
   display: flex;
   justify-content: space-between;
@@ -73,13 +75,42 @@ img {
 .card {
   width: 300px;
   height: 400px;
-  :hover {
-    .info {
-      display: inline-block;
+  overflow: hidden;
+  width: 300px;
+  height: 400px;
+
+  .poster {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    transition: 0.5s;
+  }
+  .info {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    position: absolute;
+    box-sizing: border-box;
+    transition: 0.5s;
+  }
+
+  .poster {
+    top: 0;
+    left: 0;
+  }
+
+  &:hover {
+    .poster {
+      top: 0;
+      left: -100%;
     }
 
-    .poster {
-      display: none;
+    .info {
+      bottom: 0;
+      left: 0;
+
+      overflow-x: auto;
     }
   }
 }

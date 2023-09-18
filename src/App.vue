@@ -76,15 +76,17 @@ export default {
 </script>
 
 <template>
-  <appHeader
-    @search="fetchFilms"
-    placeholder="Film o serie TV"
-    buttonSubmitText="Cerca"
-  />
+  <div class="bg">
+    <appHeader
+      @search="fetchFilms"
+      placeholder="Film o serie TV"
+      buttonSubmitText="Cerca"
+    />
 
-  <appMain />
+    <appMain />
+  </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @use "./components/main.scss" as *;
 </style>
