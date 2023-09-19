@@ -11,8 +11,8 @@ export default {
   },
   components: { CardDetail },
   methods: {
-    star(n) {
-      return n <= store.movies.vote ? "fa-regular fa-star" : "fa-solid fa-star";
+    star(n, vote) {
+      return n <= vote ? "fa-solid fa-star" : "fa-regular fa-star";
     },
   },
 };
@@ -26,16 +26,18 @@ export default {
         <p>Titolo originale: {{ movie.original_title }}</p>
         <img
           class="flag"
-          v-if="store.lenguages.includes(movie.original_lenguage)"
-          :src="'/flags/' + movie.original_lenguage + '.png'"
+          v-if="store.languages.includes(movie.original_language)"
+          :src="'/flags/' + movie.original_language + '.png'"
           alt=""
         />
         <img class="flag" v-else :src="'/flags/noflag.png'" alt="" />
-        <p>Voto: <font-awesome-icon :icon="star(n)" v-for="n in 5" /></p>
+        <p>
+          Voto: <font-awesome-icon :icon="star(n, movie.vote)" v-for="n in 5" />
+        </p>
         <p>Overview: {{ movie.overview }}</p>
       </div>
       <div>
-        <img class="poster" :src="movie.poster" alt="" />
+        <img v-if="movie.poster" class="poster" :src="movie.poster" alt="" />
       </div>
     </div>
 
@@ -45,8 +47,8 @@ export default {
         <p>Titolo originale: {{ serie.original_name }}</p>
         <img
           class="flag"
-          v-if="store.lenguages.includes(serie.original_lenguage)"
-          :src="'/flags/' + serie.original_lenguage + '.png'"
+          v-if="store.languages.includes(serie.original_language)"
+          :src="'/flags/' + serie.original_language + '.png'"
           alt=""
         />
         <img class="flag" v-else :src="'/flags/noflag.png'" alt="" />

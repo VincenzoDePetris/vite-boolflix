@@ -23,7 +23,7 @@ export default {
               id,
               title,
               original_title,
-              original_lenguage,
+              original_language,
               vote_average,
               poster_path,
               overview,
@@ -31,10 +31,12 @@ export default {
 
             return {
               overview,
-              poster: "https://image.tmdb.org/t/p/w300" + poster_path,
+              poster: poster_path
+                ? "https://image.tmdb.org/t/p/w300" + poster_path
+                : "/img/no-img.jpg",
               id,
               title,
-              original_lenguage,
+              original_language,
               vote: Math.ceil(vote_average / 2),
               original_title,
             };
@@ -60,7 +62,9 @@ export default {
             } = series;
 
             return {
-              poster: "https://image.tmdb.org/t/p/w300" + poster_path,
+              poster: poster_path
+                ? "https://image.tmdb.org/t/p/w300" + poster_path
+                : "/img/no-img.jpg",
               overview,
               id,
               original_name,
